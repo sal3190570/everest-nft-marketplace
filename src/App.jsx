@@ -9,11 +9,14 @@ import UserPage from "./pages/UserPage";
 import { AppContext } from "./context/appContext";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
 
 function App() {
-  const [collection, setCollection] = useState([]);
   const [loading, setLoading] = useState();
+  const [collection, setCollection] = useState([]);
   const [trending, setTrending] = useState([]);
+  const [newCollections, setNewCollections] = useState([]);
 
   async function fetchCollection() {
     const { data } = await axios.get(
@@ -29,7 +32,14 @@ function App() {
     );
     let trendingData = data.data;
     setTrending(trendingData);
+  }
 
+  async function fetchNewCollections() {
+    const { data } = await axios.get(
+      "https://remote-internship-api-production.up.railway.app/newCollections"
+    );
+    let newCollectionsData = data.data;
+    setNewCollections(newCollectionsData);
     setLoading(false);
   }
 
@@ -38,10 +48,13 @@ function App() {
     window.scrollTo(0, 0);
     fetchCollection();
     fetchTrending();
+    fetchNewCollections();
   }, []);
 
   return (
-    <AppContext.Provider value={{ collection, trending, loading }}>
+    <AppContext.Provider
+      value={{ collection, trending, loading, newCollections }}
+    >
       <Router>
         <Nav />
         <Routes>
