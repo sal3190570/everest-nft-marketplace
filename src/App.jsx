@@ -13,12 +13,23 @@ import axios from "axios";
 function App() {
   const [collection, setCollection] = useState([]);
   const [loading, setLoading] = useState();
+  const [trending, setTrending] = useState([]);
+
   async function fetchCollection() {
     const { data } = await axios.get(
       "https://remote-internship-api-production.up.railway.app/selectedCollection"
     );
     let collectionData = data.data;
     setCollection(collectionData);
+  }
+
+  async function fetchTrending() {
+    const { data } = await axios.get(
+      "https://remote-internship-api-production.up.railway.app/trendingNFTs"
+    );
+    let trendingData = data.data;
+    setTrending(trendingData);
+
     setLoading(false);
   }
 
@@ -26,15 +37,17 @@ function App() {
     setLoading(true);
     window.scrollTo(0, 0);
     fetchCollection();
+    fetchTrending();
   }, []);
+
   return (
-    <AppContext.Provider value={{ collection, loading }}>
+    <AppContext.Provider value={{ collection, trending, loading }}>
       <Router>
         <Nav />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/collections" element={<CollectionsPage />} />
-          <Route path="/collection" element={<CollectionPage />} />
+          <Route path="/collection/:id" element={<CollectionPage />} />
           <Route path="/item" element={<ItemPage />} />
           <Route path="/user" element={<UserPage />} />
         </Routes>
