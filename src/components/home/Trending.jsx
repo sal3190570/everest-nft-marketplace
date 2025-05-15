@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import VerifiedIcon from "../../assets/verified.png";
-import TrendingCollection from "../../assets/trending-collection.avif";
 import { Link } from "react-router-dom";
 import { AppContext } from "../../context/appContext";
 import Skeleton from "../ui/Skeleton";
