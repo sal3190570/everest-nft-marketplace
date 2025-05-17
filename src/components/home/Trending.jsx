@@ -156,7 +156,7 @@ export default function Trending() {
               </div>
               <div className="trending-column__body">
                 {new Array(5).fill(0).map((_, index) => (
-                  <div className="trending-collection">
+                  <div className="trending-collection" key={index}>
                     <div className="trending-collection__rank">{index + 1}</div>
                     <div className="trending-collection__collection">
                       <figure className="trending-collection__img__wrapper">
@@ -209,7 +209,7 @@ export default function Trending() {
               </div>
               <div className="trending-column__body">
                 {new Array(5).fill(0).map((_, index) => (
-                  <div className="trending-collection">
+                  <div className="trending-collection" key={index}>
                     <div className="trending-collection__rank">{index + 1}</div>
                     <div className="trending-collection__collection">
                       <figure className="trending-collection__img__wrapper">

@@ -17,6 +17,7 @@ function App() {
   const [collection, setCollection] = useState([]);
   const [trending, setTrending] = useState([]);
   const [newCollections, setNewCollections] = useState([]);
+  const [popularCollections, setPopularCollections] = useState([]);
 
   async function fetchCollection() {
     const { data } = await axios.get(
@@ -40,6 +41,14 @@ function App() {
     );
     let newCollectionsData = data.data;
     setNewCollections(newCollectionsData);
+  }
+
+  async function fetchPopularCollections() {
+    const { data } = await axios.get(
+      "https://remote-internship-api-production.up.railway.app/popularCollections"
+    );
+    let popularCollectionsData = data.data;
+    setPopularCollections(popularCollectionsData);
     setLoading(false);
   }
 
@@ -48,11 +57,18 @@ function App() {
     fetchCollection();
     fetchTrending();
     fetchNewCollections();
+    fetchPopularCollections();
   }, []);
 
   return (
     <AppContext.Provider
-      value={{ collection, trending, loading, newCollections }}
+      value={{
+        collection,
+        trending,
+        loading,
+        newCollections,
+        popularCollections,
+      }}
     >
       <Router>
         <Nav />
