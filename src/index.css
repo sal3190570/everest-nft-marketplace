@@ -1927,3 +1927,25 @@ USER PAGE
   opacity: 0.3;
   pointer-events: none;
 }
+
+.collection-skeleton {
+  display: flex;
+  width: 300px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #dddddd;
+  text-decoration: none;
+  color: black;
+  display: block;
+}
+
+.owl-carousel .owl-nav {
+  display: flex !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.collection__stats--skeleton {
+  display: flex;
+  margin-right: 10px;
+}

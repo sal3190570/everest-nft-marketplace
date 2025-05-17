@@ -13,7 +13,7 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 
 function App() {
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(true);
   const [collection, setCollection] = useState([]);
   const [trending, setTrending] = useState([]);
   const [newCollections, setNewCollections] = useState([]);
@@ -44,7 +44,6 @@ function App() {
   }
 
   useEffect(() => {
-    setLoading(true);
     window.scrollTo(0, 0);
     fetchCollection();
     fetchTrending();

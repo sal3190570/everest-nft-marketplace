@@ -10,10 +10,10 @@ const MyCarousel = ({ children }) => {
     dots: false,
     margin: 16,
     autoWidth: false,
-    items: 6,
+    items: 9,
     responsive: {
-      0: { items: 1 },
-      768: { items: 3 },
+      0: { items: 2 },
+      768: { items: 4 },
       1200: { items: 6 },
     },
   };
