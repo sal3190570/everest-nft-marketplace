@@ -1,0 +1,18 @@
+/* Fix arrow positioning */
+.slick-prev {
+  left: -25px !important;
+}
+.slick-next {
+  right: -25px !important;
+}
+
+/* Ensure dots are visible */
+.slick-dots {
+  bottom: -30px !important;
+}
+
+/* Style arrows */
+.slick-arrow:before {
+  color: #000 !important;
+  font-size: 24px !important;
+}
