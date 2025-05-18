@@ -9,8 +9,8 @@ import UserPage from "./pages/UserPage";
 import { AppContext } from "./context/appContext";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import "owl.carousel/dist/assets/owl.carousel.css";
-import "owl.carousel/dist/assets/owl.theme.default.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -18,6 +18,7 @@ function App() {
   const [trending, setTrending] = useState([]);
   const [newCollections, setNewCollections] = useState([]);
   const [popularCollections, setPopularCollections] = useState([]);
+  const [collections, setCollections] = useState([]);
 
   async function fetchCollection() {
     const { data } = await axios.get(
@@ -49,6 +50,14 @@ function App() {
     );
     let popularCollectionsData = data.data;
     setPopularCollections(popularCollectionsData);
+  }
+
+  async function fetchCollections() {
+    const { data } = await axios.get(
+      "https://remote-internship-api-production.up.railway.app/collections"
+    );
+    let collectionsData = data.data;
+    setCollections(collectionsData);
     setLoading(false);
   }
 
@@ -58,6 +67,7 @@ function App() {
     fetchTrending();
     fetchNewCollections();
     fetchPopularCollections();
+    fetchCollections();
   }, []);
 
   return (
@@ -68,6 +78,7 @@ function App() {
         loading,
         newCollections,
         popularCollections,
+        collections,
       }}
     >
       <Router>
@@ -75,7 +86,10 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/collections" element={<CollectionsPage />} />
-          <Route path="/collection/:id" element={<CollectionPage />} />
+          <Route
+            path="/collection/:collectionId"
+            element={<CollectionPage />}
+          />
           <Route path="/item" element={<ItemPage />} />
           <Route path="/user" element={<UserPage />} />
         </Routes>

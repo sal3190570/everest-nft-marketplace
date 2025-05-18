@@ -1,30 +1,42 @@
-import React, { useRef } from "react";
-import OwlCarousel from "react-owl-carousel";
-import "owl.carousel/dist/assets/owl.carousel.css";
-import "owl.carousel/dist/assets/owl.theme.default.css";
+import "./CarouselFix.css";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const MyCarousel = ({ children }) => {
-  const options = {
-    loop: true,
-    nav: true,
+  const settings = {
     dots: false,
-    margin: 16,
-    autoWidth: false,
-    items: 9,
-    responsive: {
-      0: { items: 2 },
-      768: { items: 4 },
-      1200: { items: 6 },
-    },
+    infinite: true,
+    speed: 500,
+    slidesToShow: 6,
+    slidesToScroll: 1,
+    arrows: true,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
-  return (
-    <>
-      <OwlCarousel className="owl-theme" {...options}>
-        {children}
-      </OwlCarousel>
-    </>
-  );
+  return <Slider {...settings}>{children}</Slider>;
 };
 
 export default MyCarousel;
