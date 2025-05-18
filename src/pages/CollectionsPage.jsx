@@ -7,7 +7,7 @@ import CollectionSkeleton from "../components/ui/CollectionSkeleton";
 export default function CollectionsPage() {
   const { loading, collections } = useContext(AppContext);
   const [visibleCount, setVisibleCount] = useState(12);
-
+  console.log(collections);
   const handleLoadMore = () => {
     setVisibleCount((prev) => prev + 6);
   };

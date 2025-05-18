@@ -8,7 +8,7 @@ import CollectionSkeleton from "../ui/CollectionSkeleton";
 
 export default function NewCollections() {
   const { loading, newCollections } = useContext(AppContext);
-
+  console.log(newCollections);
   return (
     <section id="new-collections">
       <div className="container">
