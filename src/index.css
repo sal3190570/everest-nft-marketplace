@@ -1892,5 +1892,15 @@ USER PAGE
 }
 
 .slick-list {
-  margin: 0 -8px; 
+  margin: 0 -8px;
+}
+
+.carousel-slide {
+  padding: 0 8px; /* spacing between slides */
+}
+
+.item-column {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
 }
