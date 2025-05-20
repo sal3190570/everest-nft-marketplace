@@ -1,8 +1,6 @@
 import React, { useContext } from "react";
-
 import { AppContext } from "../../context/appContext";
 import MyCarousel from "../ui/MyCarousel";
-import Skeleton from "../ui/Skeleton";
 import CollectionProp from "../ui/CollectionProp";
 import CollectionSkeleton from "../ui/CollectionSkeleton";
 

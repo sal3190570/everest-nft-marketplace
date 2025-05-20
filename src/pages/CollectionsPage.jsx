@@ -28,10 +28,7 @@ export default function CollectionsPage() {
                 </div>
               ))
             : collections.slice(0, visibleCount).map((collection, index) => (
-                <div
-                  className="collection-column"
-                  key={collection.collectionId || index}
-                >
+                <div className="collection-column" key={collection.id || index}>
                   <CollectionProp collectionData={collection} />
                 </div>
               ))}
