@@ -13,11 +13,11 @@ export default function CollectionInfo() {
         <section id="collection-info">
           <div className="row">
             <div className="collection-info__wrapper">
-              <p className="collection-info__description">
+              <div className="collection-info__description">
                 <Skeleton width="100%" height="14px" borderRadius="4px" />
                 <Skeleton width="100%" height="14px" borderRadius="4px" />
                 <Skeleton width="75%" height="14px" borderRadius="4px" />
-              </p>
+              </div>
               <div className="collection-info__details">
                 <span className="collection-info__detail">
                   <Skeleton width="50px" height="14px" borderRadius="4px" />
