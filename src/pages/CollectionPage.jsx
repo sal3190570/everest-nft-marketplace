@@ -10,13 +10,16 @@ export default function CollectionPage() {
   const { collectionId } = useParams();
   const [individualCollection, setIndividualCollection] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const [individualCollectionItems, setIndividualCollectionItems] = useState(
+    []
+  );
   async function fetchIndividualCollection() {
     const { data } = await axios.get(
       `https://remote-internship-api-production.up.railway.app/collection/${collectionId}`
     );
     let individualCollectionData = data.data;
     setIndividualCollection(individualCollectionData);
+    setIndividualCollectionItems(individualCollectionData.items);
     setLoading(false);
   }
 
@@ -27,7 +30,7 @@ export default function CollectionPage() {
 
   return (
     <IndividualCollectionContext.Provider
-      value={{ loading, individualCollection }}
+      value={{ loading, individualCollection, individualCollectionItems }}
     >
       <CollectionHeader />
       <CollectionInfo />

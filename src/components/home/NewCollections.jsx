@@ -1,14 +1,12 @@
 import React, { useContext } from "react";
-
 import { AppContext } from "../../context/appContext";
 import MyCarousel from "../ui/MyCarousel";
-import Skeleton from "../ui/Skeleton";
 import CollectionProp from "../ui/CollectionProp";
 import CollectionSkeleton from "../ui/CollectionSkeleton";
 
 export default function NewCollections() {
   const { loading, newCollections } = useContext(AppContext);
-  console.log(newCollections);
+
   return (
     <section id="new-collections">
       <div className="container">

@@ -7,7 +7,7 @@ import CollectionSkeleton from "../components/ui/CollectionSkeleton";
 export default function CollectionsPage() {
   const { loading, collections } = useContext(AppContext);
   const [visibleCount, setVisibleCount] = useState(12);
-  console.log(collections);
+
   const handleLoadMore = () => {
     setVisibleCount((prev) => prev + 6);
   };
@@ -28,10 +28,7 @@ export default function CollectionsPage() {
                 </div>
               ))
             : collections.slice(0, visibleCount).map((collection, index) => (
-                <div
-                  className="collection-column"
-                  key={collection.collectionId || index}
-                >
+                <div className="collection-column" key={collection.id || index}>
                   <CollectionProp collectionData={collection} />
                 </div>
               ))}
