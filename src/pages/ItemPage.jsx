@@ -11,6 +11,7 @@ import { faEthereum } from "@fortawesome/free-brands-svg-icons";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { ItemContext } from "../context/ItemContext";
+import Skeleton from "../components/ui/Skeleton";
 
 export default function ItemPage() {
   const [loading, setLoading] = useState(true);
@@ -103,116 +104,185 @@ export default function ItemPage() {
                     className="item-page__img__icon"
                   />
                   <div className="item-page__img__likes">
-                    <FontAwesomeIcon
-                      icon={faHeart}
-                      className="item-page__img__icon"
-                    />
                     <span className="item-page__img__likes__text">
-                      {loading ? "11" : item.favorites}
+                      {loading ? (
+                        <Skeleton
+                          height="15px"
+                          width="40px"
+                          borderRadius="4px"
+                        />
+                      ) : (
+                        item.favorites
+                      )}
                     </span>
                   </div>
                 </div>
-                <img
-                  src={
-                    loading
-                      ? "https://i.seadn.io/gcs/files/0a085499e0f3800321618af356c5d36b.png?auto=format&dpr=1&w=1000"
-                      : item.imageLink
-                  }
-                  alt=""
-                  className="item-page__img"
-                />
+                {loading ? (
+                  <div>
+                    <Skeleton
+                      height="1000px"
+                      width="100%"
+                      borderRadius="25px"
+                    />
+                  </div>
+                ) : (
+                  <img src={item.imageLink} alt="" className="item-page__img" />
+                )}
               </figure>
             </div>
             <div className="item-page__right">
-              <Link
-                to={
-                  loading ? "/collection" : `/collection/${item.collectionId}`
-                }
-                className="item-page__collection light-blue"
-              >
-                {loading ? "Meebits" : item.collection}
-              </Link>
-              <h1 className="item-page__name">
-                {loading ? "Meebit #18854" : item.title}
-              </h1>
-              <span className="item-page__owner">
-                Owned by{" "}
+              {loading ? (
+                <Skeleton height="15px" width="125px" borderRadius="4px" />
+              ) : (
                 <Link
-                  to={loading ? "/user" : `/user/${item.ownerId}`}
-                  className="light-blue item-page__owner__link"
+                  to={`/collection/${item.collectionId}`}
+                  className="item-page__collection light-blue"
                 >
-                  {loading ? "shilpixels" : item.owner}
+                  {item.collection}
                 </Link>
-              </span>
-              <div className="item-page__details">
-                <div className="item-page__detail">
-                  <FontAwesomeIcon
-                    icon={faEye}
-                    className="item-page__detail__icon"
-                  />
-                  <span className="item-page__detail__text">
-                    {loading ? "324" : item.views} views
-                  </span>
+              )}
+              <h1
+                className="item-page__name"
+                style={loading ? { marginTop: "25px" } : {}}
+              >
+                {loading ? (
+                  <Skeleton height="15px" width="250px" borderRadius="4px" />
+                ) : (
+                  item.title
+                )}
+              </h1>
+              {loading ? (
+                <span className="item-page__owner">
+                  <Skeleton height="15px" width="125px" borderRadius="4px" />
+                </span>
+              ) : (
+                <span className="item-page__owner">
+                  Owned by{" "}
+                  <Link
+                    to={`/user/${item.ownerId}`}
+                    className="light-blue item-page__owner__link"
+                  >
+                    {item.owner}
+                  </Link>
+                </span>
+              )}
+              {loading ? (
+                <div className="item-page__details">
+                  <div className="item-page__detail">
+                    <Skeleton height="15px" width="75px" borderRadius="4px" />
+                  </div>
+                  <div className="item-page__detail">
+                    <Skeleton height="15px" width="75px" borderRadius="4px" />
+                  </div>
+                  <div className="item-page__detail">
+                    <Skeleton height="15px" width="75px" borderRadius="4px" />
+                  </div>
                 </div>
-                <div className="item-page__detail">
-                  <FontAwesomeIcon
-                    icon={faHeart}
-                    className="item-page__detail__icon"
-                  />
-                  <span className="item-page__detail__text">
-                    {loading ? "11" : item.favorites} favorites
-                  </span>
-                </div>
-                <div className="item-page__detail">
-                  <FontAwesomeIcon
-                    icon={faShapes}
-                    className="item-page__detail__icon"
-                  />
-                  <span className="item-page__detail__text">PFPs</span>
-                </div>
-              </div>
-              <div className="item-page__sale">
-                <div className="item-page__sale__header">
-                  <div className="green-pulse"></div>
-                  <span>
-                    Sale ends in{" "}
-                    <span className="timer__hours">
-                      {loading ? "2" : hours}h{" "}
-                    </span>
-                    <span className="timer__minutes">
-                      {loading ? "30" : minutes}m{" "}
-                    </span>
-                    <span className="timer__seconds">
-                      {loading ? "56" : seconds}s
-                    </span>
-                  </span>
-                </div>
-                <div className="item-page__sale__body">
-                  <span className="item-page__sale__label">Current price</span>
-                  <div className="item-page__sale__price">
-                    <span className="item-page__sale__price__eth">
-                      {loading ? "100" : item.ethPrice} ETH
-                    </span>
-                    <span className="item-page__sale__price__dollars">
-                      {loading ? "$314,884.00" : item.usdPrice}
+              ) : (
+                <div className="item-page__details">
+                  <div className="item-page__detail">
+                    <FontAwesomeIcon
+                      icon={faEye}
+                      className="item-page__detail__icon"
+                    />
+                    <span className="item-page__detail__text">
+                      {item.views} views
                     </span>
                   </div>
-                  <div className="item-page__sale__buttons">
-                    <div className="item-page__sale__buy">
-                      <button className="item-page__sale__buy__button disabled">
-                        Buy now
-                      </button>
-                      <button className="item-page__sale__buy__icon disabled">
-                        <FontAwesomeIcon icon={faShoppingBag} />
+                  <div className="item-page__detail">
+                    <FontAwesomeIcon
+                      icon={faHeart}
+                      className="item-page__detail__icon"
+                    />
+                    <span className="item-page__detail__text">
+                      {item.favorites} favorites
+                    </span>
+                  </div>
+                  <div className="item-page__detail">
+                    <FontAwesomeIcon
+                      icon={faShapes}
+                      className="item-page__detail__icon"
+                    />
+                    <span className="item-page__detail__text">PFPs</span>
+                  </div>
+                </div>
+              )}
+              {loading ? (
+                <div className="item-page__sale">
+                  <div className="item-page__sale__header">
+                    <Skeleton height="15px" width="200px" borderRadius="4px" />
+                  </div>
+                  <div className="item-page__sale__body">
+                    <Skeleton height="15px" width="75px" borderRadius="4px" />
+                    <div
+                      className="item-page__sale__price"
+                      style={loading ? { marginTop: "20px", gap: "20px" } : {}}
+                    >
+                      <Skeleton
+                        height="15px"
+                        width="150px"
+                        borderRadius="4px"
+                      />
+                      <Skeleton
+                        height="15px"
+                        width="150px"
+                        borderRadius="4px"
+                      />
+                    </div>
+                    <div className="item-page__sale__buttons">
+                      <div
+                        className="item-page__sale__buy"
+                        style={loading ? { marginTop: "10px" } : {}}
+                      >
+                        <Skeleton
+                          height="50px"
+                          width="100%"
+                          borderRadius="4px"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="item-page__sale">
+                  <div className="item-page__sale__header">
+                    <div className="green-pulse"></div>
+                    <span>
+                      Sale ends in{" "}
+                      <span className="timer__hours">{hours}h </span>
+                      <span className="timer__minutes">{minutes}m </span>
+                      <span className="timer__seconds">{seconds}s</span>
+                    </span>
+                  </div>
+                  <div className="item-page__sale__body">
+                    <span className="item-page__sale__label">
+                      Current price
+                    </span>
+                    <div className="item-page__sale__price">
+                      <span className="item-page__sale__price__eth">
+                        {item.ethPrice} ETH
+                      </span>
+                      <span className="item-page__sale__price__dollars">
+                        {item.usdPrice}
+                      </span>
+                    </div>
+                    <div className="item-page__sale__buttons">
+                      <div className="item-page__sale__buy">
+                        <button className="item-page__sale__buy__button disabled">
+                          Buy now
+                        </button>
+                        <button className="item-page__sale__buy__icon disabled">
+                          <FontAwesomeIcon icon={faShoppingBag} />
+                        </button>
+                      </div>
+                      <button className="item-page__sale__offer disabled">
+                        <FontAwesomeIcon icon={faTag} />
+                        Make offer
                       </button>
                     </div>
-                    <button className="item-page__sale__offer disabled">
-                      <FontAwesomeIcon icon={faTag} />
-                      Make offer
-                    </button>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </div>

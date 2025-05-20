@@ -4,6 +4,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ItemContext } from "../../context/ItemContext";
 import MyCarousel from "../ui/MyCarousel";
+import Skeleton from "../ui/Skeleton";
 
 export default function RecommendedItems() {
   const { loading, itemId, recommendedItemsData } = useContext(ItemContext);
@@ -31,17 +32,21 @@ export default function RecommendedItems() {
               {new Array(6).fill(0).map((_, index) => (
                 <div className="carousel-slide" key={index}>
                   <figure className="item__img__wrapper">
-                    <img
-                      src="https://i.seadn.io/gcs/files/0a085499e0f3800321618af356c5d36b.png?auto=format&dpr=1&w=384"
-                      alt=""
-                      className="item__img"
-                    />
+                    <Skeleton height="100%" width="100%" borderRadius="4px" />
                   </figure>
                   <div className="item__details">
-                    <span className="item__details__name">Meebit #0001</span>
-                    <span className="item__details__price">0.98 ETH</span>
+                    <span className="item__details__name">
+                      <Skeleton height="15px" width="75px" borderRadius="4px" />
+                    </span>
+                    <span className="item__details__price">
+                      <Skeleton height="15px" width="40px" borderRadius="4px" />
+                    </span>
                     <span className="item__details__last-sale">
-                      Last sale: 7.45 ETH
+                      <Skeleton
+                        height="15px"
+                        width="100px"
+                        borderRadius="4px"
+                      />
                     </span>
                   </div>
                   <div className="item__see-more">
@@ -54,13 +59,11 @@ export default function RecommendedItems() {
               ))}
             </MyCarousel>
           </div>
-          <div className="recommended-items__footer">
-            <Link
-              to={"/collection"}
-              className="recommended-items__footer__button"
-            >
-              View Collection
-            </Link>
+          <div
+            className="recommended-items__footer"
+            style={{ marginTop: "20px" }}
+          >
+            <Skeleton height="25px" width="150px" borderRadius="4px" />
           </div>
         </div>
       </div>
