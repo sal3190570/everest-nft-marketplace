@@ -90,7 +90,7 @@ function App() {
             path="/collection/:collectionId"
             element={<CollectionPage />}
           />
-          <Route path="/item/:itemId" element={<ItemPage />} />
+          <Route path="/item/:id" element={<ItemPage />} />
           <Route path="/user/:userId" element={<UserPage />} />
         </Routes>
         <Footer />
