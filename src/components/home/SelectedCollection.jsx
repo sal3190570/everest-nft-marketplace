@@ -1,16 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 
 import VerifiedIcon from "../../assets/verified.png";
 import { Link } from "react-router-dom";
 import { AppContext } from "../../context/appContext";
 import Skeleton from "../ui/Skeleton";
+import Aos from "aos";
 
 export default function SelectedCollection() {
   const { collection, loading } = useContext(AppContext);
+  useEffect(() => {
+    Aos.refresh();
+  }, [collection]);
 
   return loading !== true ? (
     <header>
-      <div className="selected-collection">
+      <div data-aos="fade-up" className="selected-collection">
         <video
           autoPlay
           muted

@@ -11,6 +11,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -20,55 +22,84 @@ function App() {
   const [popularCollections, setPopularCollections] = useState([]);
   const [collections, setCollections] = useState([]);
 
+  // Data fetching functions
   async function fetchCollection() {
     const { data } = await axios.get(
       "https://remote-internship-api-production.up.railway.app/selectedCollection"
     );
-    let collectionData = data.data;
-    setCollection(collectionData);
+    setCollection(data.data);
   }
 
   async function fetchTrending() {
     const { data } = await axios.get(
       "https://remote-internship-api-production.up.railway.app/trendingNFTs"
     );
-    let trendingData = data.data;
-    setTrending(trendingData);
+    setTrending(data.data);
   }
 
   async function fetchNewCollections() {
     const { data } = await axios.get(
       "https://remote-internship-api-production.up.railway.app/newCollections"
     );
-    let newCollectionsData = data.data;
-    setNewCollections(newCollectionsData);
+    setNewCollections(data.data);
   }
 
   async function fetchPopularCollections() {
     const { data } = await axios.get(
       "https://remote-internship-api-production.up.railway.app/popularCollections"
     );
-    let popularCollectionsData = data.data;
-    setPopularCollections(popularCollectionsData);
+    setPopularCollections(data.data);
   }
 
   async function fetchCollections() {
     const { data } = await axios.get(
       "https://remote-internship-api-production.up.railway.app/collections"
     );
-    let collectionsData = data.data;
-    setCollections(collectionsData);
+    setCollections(data.data);
     setLoading(false);
   }
 
+ 
   useEffect(() => {
-    window.scrollTo(0, 0);
     fetchCollection();
     fetchTrending();
     fetchNewCollections();
     fetchPopularCollections();
     fetchCollections();
   }, []);
+
+  
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      AOS.init({
+        disable: false,
+        startEvent: "DOMContentLoaded",
+        initClassName: "aos-init",
+        animatedClassName: "aos-animate",
+        useClassNames: false,
+        disableMutationObserver: false,
+        debounceDelay: 50,
+        throttleDelay: 99,
+        offset: 50,
+        delay: 0,
+        duration: 600,
+        easing: "ease",
+        once: true,
+        mirror: false,
+        anchorPlacement: "top-bottom",
+      });
+      AOS.refreshHard();
+    }, 100);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
+  
+  useEffect(() => {
+    if (!loading) {
+      AOS.refresh();
+    }
+  }, [loading]);
 
   return (
     <AppContext.Provider
