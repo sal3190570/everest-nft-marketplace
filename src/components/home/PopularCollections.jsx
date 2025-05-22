@@ -1,18 +1,39 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { AppContext } from "../../context/appContext";
 import MyCarousel from "../ui/MyCarousel";
 import CollectionProp from "../ui/CollectionProp";
 import CollectionSkeleton from "../ui/CollectionSkeleton";
+import Aos from "aos";
 
 export default function PopularCollections() {
   const { loading, popularCollections } = useContext(AppContext);
 
+  useEffect(() => {
+    if (!loading) {
+      const timeout = setTimeout(() => {
+        Aos.refreshHard();
+      }, 100); // 100ms delay ensures DOM is ready
+      return () => clearTimeout(timeout);
+    }
+  }, [loading, popularCollections]);
   return (
     <section id="popular-collections">
       <div className="container">
         <div className="row">
-          <h2 className="popular-collections__title">Popular Collections</h2>
-          <div className="popular-collections__body">
+          <h2
+            className="popular-collections__title"
+            data-aos="fade-up"
+            data-aos-delay="600"
+            data-aos-once="false"
+          >
+            Popular Collections
+          </h2>
+          <div
+            className="popular-collections__body"
+            data-aos="fade-up"
+            data-aos-delay="800"
+            data-aos-once="false"
+          >
             <div
               className="collection-column"
               style={{

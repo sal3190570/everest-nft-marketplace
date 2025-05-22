@@ -1,18 +1,40 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { AppContext } from "../../context/appContext";
 import MyCarousel from "../ui/MyCarousel";
 import CollectionProp from "../ui/CollectionProp";
 import CollectionSkeleton from "../ui/CollectionSkeleton";
+import Aos from "aos";
 
 export default function NewCollections() {
   const { loading, newCollections } = useContext(AppContext);
+
+  useEffect(() => {
+    if (!loading) {
+      const timeout = setTimeout(() => {
+        Aos.refreshHard();
+      }, 100); // 100ms delay ensures DOM is ready
+      return () => clearTimeout(timeout);
+    }
+  }, [loading, newCollections]);
 
   return (
     <section id="new-collections">
       <div className="container">
         <div className="row">
-          <h2 className="new-collections__title">New Collections</h2>
-          <div className="new-collections__body">
+          <h2
+            className="new-collections__title"
+            data-aos="fade-up"
+            data-aos-delay="200"
+            data-aos-once="false"
+          >
+            New Collections
+          </h2>
+          <div
+            className="new-collections__body"
+            data-aos="fade-up"
+            data-aos-delay="400"
+            data-aos-once="false"
+          >
             <div
               className="collection-column"
               style={{
@@ -29,8 +51,8 @@ export default function NewCollections() {
                     ))
                   : newCollections.map((newCollection, index) => (
                       <CollectionProp
-                        key={newCollection.collectionId || index}
                         collectionData={newCollection}
+                        key={newCollection.collectionId || index}
                       />
                     ))}
               </MyCarousel>
