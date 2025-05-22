@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 
 import VerifiedIcon from "../../assets/verified.png";
 import { Link } from "react-router-dom";
-import { AppContext } from "../../context/appContext";
+import { AppContext } from "../../context/AppContext";
 import Skeleton from "../ui/Skeleton";
 import Aos from "aos";
 

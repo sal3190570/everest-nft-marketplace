@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { AppContext } from "../context/appContext";
+import { AppContext } from "../context/AppContext";
 import CollectionProp from "../components/ui/CollectionProp";
 import CollectionSkeleton from "../components/ui/CollectionSkeleton";
 

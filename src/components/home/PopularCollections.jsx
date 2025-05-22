@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { AppContext } from "../../context/appContext";
+import { AppContext } from "../../context/AppContext";
 import MyCarousel from "../ui/MyCarousel";
 import CollectionProp from "../ui/CollectionProp";
 import CollectionSkeleton from "../ui/CollectionSkeleton";
