@@ -12,7 +12,7 @@ export default function PopularCollections() {
     if (!loading) {
       const timeout = setTimeout(() => {
         Aos.refreshHard();
-      }, 100); // 100ms delay ensures DOM is ready
+      }, 100); 
       return () => clearTimeout(timeout);
     }
   }, [loading, popularCollections]);

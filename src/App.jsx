@@ -59,7 +59,7 @@ function App() {
     setLoading(false);
   }
 
-  // Initial data fetch
+ 
   useEffect(() => {
     fetchCollection();
     fetchTrending();
@@ -68,7 +68,7 @@ function App() {
     fetchCollections();
   }, []);
 
-  // AOS initialization
+  
   useEffect(() => {
     const timeout = setTimeout(() => {
       AOS.init({
@@ -94,7 +94,7 @@ function App() {
     return () => clearTimeout(timeout);
   }, []);
 
-  // Refresh AOS after loading completes
+  
   useEffect(() => {
     if (!loading) {
       AOS.refresh();
