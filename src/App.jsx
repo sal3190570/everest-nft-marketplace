@@ -80,7 +80,7 @@ function App() {
         disableMutationObserver: false,
         debounceDelay: 50,
         throttleDelay: 99,
-        offset: 100,
+        offset: 50,
         delay: 0,
         duration: 600,
         easing: "ease",

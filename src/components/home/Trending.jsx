@@ -62,7 +62,6 @@ export default function Trending() {
                     data-aos="fade-up"
                     data-aos-delay={200 + index * 50}
                     data-aos-duration="600"
-                    data-aos-offset="0"
                   >
                     <div className="trending-collection__rank">
                       {product?.rank}
