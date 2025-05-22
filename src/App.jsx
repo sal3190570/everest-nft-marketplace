@@ -6,7 +6,7 @@ import HomePage from "./pages/HomePage";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import ItemPage from "./pages/ItemPage";
 import UserPage from "./pages/UserPage";
-import { AppContext } from "./context/appContext";
+import { AppContext } from "./context/AppContext";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "slick-carousel/slick/slick.css";
@@ -59,7 +59,6 @@ function App() {
     setLoading(false);
   }
 
- 
   useEffect(() => {
     fetchCollection();
     fetchTrending();
@@ -68,7 +67,6 @@ function App() {
     fetchCollections();
   }, []);
 
-  
   useEffect(() => {
     const timeout = setTimeout(() => {
       AOS.init({
@@ -94,7 +92,6 @@ function App() {
     return () => clearTimeout(timeout);
   }, []);
 
-  
   useEffect(() => {
     if (!loading) {
       AOS.refresh();
