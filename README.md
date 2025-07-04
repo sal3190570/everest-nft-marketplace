@@ -7,7 +7,7 @@ Revamped a static single-page application into an engaging interface with intera
 ## Install Packages
 
 ```bash
-npm install
+npm i
 ```
 
 ## Start the app
