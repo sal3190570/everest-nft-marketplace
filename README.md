@@ -2,7 +2,7 @@
 
 <img width="1440" alt="Everst NFT Marketplace Image" src="https://i.postimg.cc/MGG1Cjq4/NFT-App-Media.png">
 
-Transformed a static single-page application into an interactive UI with animations, transitions, and carousels, utilising Axios for dynamic data representation. Employed Git for version control and collaboration.
+Revamped a static single-page application into an engaging interface with interactive animations, transitions, and carousels, utilizing Axios for dynamic data display. Managed version control and team collaboration with Git.
 
 ## Install Packages
 
